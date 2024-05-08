@@ -1,0 +1,16 @@
+{
+  "name": "nutZtash",
+  "short_name": "nutZtash",
+  "description": "Lightweight and fully private todo and notes tool.",
+  "start_url": ".",
+  "display_override": ["fullscreen", "minimal-ui"],
+  "display": "standalone",
+  "theme_color": "#00008b",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "nutztash.svg",
+      "sizes": "any"
+    }
+  ]
+}
