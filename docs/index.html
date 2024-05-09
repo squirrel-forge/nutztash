@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>nutZtash - The private todo and notes tool</title>
     <meta name="description" content="The private todo and notes tool for every device" />
@@ -35,44 +35,50 @@
                     <span class="ui-button__label ui-tooltip__tip">Show menu</span>
                 </button>
                 <div data-nav="drop" tabindex="0">
-                    <div class="ui-wrap ui-wrap--menu-drop">
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.install" type="button" disabled style="display:none">
-                            <span class="ui-icon" data-icon="download"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Install</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="board.create" type="button" disabled>
-                            <span class="ui-icon" data-icon="action-create"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">New board</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="settings.show" type="button" disabled>
-                            <span class="ui-icon" data-icon="settings"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Settings</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="theme.show" type="button" disabled>
-                            <span class="ui-icon" data-icon="user"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Theme</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="storage.show" type="button" disabled>
-                            <span class="ui-icon" data-icon="save"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Storage</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="about.show" type="button" disabled>
-                            <span class="ui-icon" data-icon="siux"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">About</span>
-                        </button>
-                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="privacy.show" type="button" disabled>
-                            <span class="ui-icon" data-icon="info"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Privacy</span>
-                        </button>
-                        <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
-                            <span class="ui-icon" data-icon="unknown"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Report a bug</span>
-                        </a>
-                        <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
-                            <span class="ui-icon" data-icon="github"><span></span></span>
-                            <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
-                        </a>
-                        <div class="header__copy">&copy;2024 squirrel-forge</div>
+                    <div data-nav="scroll">
+                        <div class="ui-wrap ui-wrap--menu-drop">
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.install" type="button" disabled style="display:none">
+                                <span class="ui-icon" data-icon="download"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Install</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="board.create" type="button" disabled>
+                                <span class="ui-icon" data-icon="action-create"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">New board</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="settings.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="settings"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Settings</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="theme.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="user"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Theme</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="storage.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="save"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Storage</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="about.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="siux"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">About</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="privacy.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="info"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Privacy</span>
+                            </button>
+                            <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
+                                <span class="ui-icon" data-icon="unknown"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Report a bug</span>
+                            </a>
+                            <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
+                                <span class="ui-icon" data-icon="github"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
+                            </a>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.share" type="button" disabled>
+                                <span class="ui-icon" data-icon="arrow-small"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Share</span>
+                            </button>
+                            <div class="header__copy">&copy;2024 squirrel-forge</div>
+                        </div>
                     </div>
                 </div>
             </div>
