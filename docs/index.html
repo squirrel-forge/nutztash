@@ -19,13 +19,12 @@
 <body class="page ui-font--default">
 <header id="header" class="page__header header">
     <div class="ui-wrap ui-wrap--header">
-        <div class="header__logo">
+        <div class="header__logo ui-tooltip" data-tip="br" tabindex="0">
             <h1>
                 <span class="ui-icon ui-icon--inline" data-icon="acorn"></span>
                 <span>nutZtash <small data-version></small></span>
             </h1>
-            <p>
-                <span class="ui-icon ui-icon--inline" data-icon="arrow-simple"></span>
+            <p class="ui-tooltip__tip">
                 <small>Lightweight and fully private todo and notes tool.</small>
             </p>
         </div>
@@ -37,6 +36,10 @@
                 </button>
                 <div data-nav="drop" tabindex="0">
                     <div class="ui-wrap ui-wrap--menu-drop">
+                        <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.install" type="button" disabled style="display:none">
+                            <span class="ui-icon" data-icon="download"><span></span></span>
+                            <span class="ui-button__label ui-tooltip__tip">Install</span>
+                        </button>
                         <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="board.create" type="button" disabled>
                             <span class="ui-icon" data-icon="action-create"><span></span></span>
                             <span class="ui-button__label ui-tooltip__tip">New board</span>
@@ -69,6 +72,7 @@
                             <span class="ui-icon" data-icon="github"><span></span></span>
                             <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
                         </a>
+                        <div class="header__copy">&copy;2024 squirrel-forge</div>
                     </div>
                 </div>
             </div>
@@ -129,19 +133,19 @@
         <div class="footer__copy">&copy;2024 squirrel-forge</div>
         <nav data-nav="inline">
             <div data-nav="nav">
-                <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="tl" data-action="about.show" type="button" disabled>
+                <button class="ui-button ui-button--icon ui-tooltip" data-tip="tl" data-action="about.show" type="button" disabled>
                     <span class="ui-icon" data-icon="siux"><span></span></span>
                     <span class="ui-button__label ui-tooltip__tip">About</span>
                 </button>
-                <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="tl" data-action="privacy.show" type="button" disabled>
+                <button class="ui-button ui-button--icon ui-tooltip" data-tip="tl" data-action="privacy.show" type="button" disabled>
                     <span class="ui-icon" data-icon="info"><span></span></span>
                     <span class="ui-button__label ui-tooltip__tip">Privacy</span>
                 </button>
-                <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="tl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
+                <a class="ui-button ui-button--icon ui-tooltip" data-tip="tl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
                     <span class="ui-icon" data-icon="unknown"><span></span></span>
                     <span class="ui-button__label ui-tooltip__tip">Report a bug</span>
                 </a>
-                <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="tl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
+                <a class="ui-button ui-button--icon ui-tooltip" data-tip="tl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
                     <span class="ui-icon" data-icon="github"><span></span></span>
                     <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
                 </a>
