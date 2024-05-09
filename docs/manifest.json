@@ -6,7 +6,7 @@
   "display_override": ["fullscreen", "minimal-ui"],
   "display": "standalone",
   "theme_color": "#00008b",
-  "background_color": "#ffffff",
+  "background_color": "#00008b",
   "icons": [
     {
       "src": "nutztash.svg",
