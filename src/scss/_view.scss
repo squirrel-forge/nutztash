@@ -1,0 +1,37 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {}
+
+@mixin styles {
+  .view {
+    height: calc(100vh - var(--header-height));
+    background-color: var(--view-color-background);
+
+    &__scroll {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+    }
+    &__content {
+      position: relative;
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    &:not(.view--show-order-controls) {
+      [data-action="board.up"],
+      [data-action="board.down"],
+      [data-action="group.up"],
+      [data-action="group.down"],
+      [data-action="item.up"],
+      [data-action="item.down"] {
+        &:not([data-keep]) {
+          display: none;
+        }
+      }
+    }
+  }
+}

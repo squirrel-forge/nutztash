@@ -1,0 +1,18 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {
+  --scrollbar-width: 0;
+}
+
+@mixin styles {
+  .page {
+    padding-top: var(--header-height);
+
+    &__header {}
+    &__view {}
+    &__footer {}
+  }
+}

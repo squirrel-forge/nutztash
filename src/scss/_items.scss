@@ -1,0 +1,228 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {
+  --item-margin: var(--app-size-p);
+  --item-content-padding: var(--app-size-h);
+  --item-columns: 1;
+  --item-columns-max: 1;
+  --item-columns-max-max: 1;
+  --item-width: calc((100% - var(--item-margin) * 2 * var(--item-columns)) / var(--item-columns));
+  --item-width-max: calc((100% - var(--item-margin) * 2 * var(--item-columns-max)) / var(--item-columns-max));
+  --item-width-max-max: calc((100% - var(--item-margin) * 2 * var(--item-columns-max-max)) / var(--item-columns-max-max));
+}
+
+@mixin styles {
+  .note {
+    width: 100%;
+    padding: var(--item-content-padding);
+
+    &__wrap {
+      white-space: pre-wrap;
+    }
+  }
+
+  .youtube {
+    margin: auto;
+    padding: var(--item-content-padding);
+    width: 100%;
+    max-width: calc((100vh - var(--app-ref-bh) * 2 - var(--ui-modal-header-spacing) - (var(--item-content-padding) + var(--ui-modal-view-offset-y)) * 2) / 9 * 16);
+
+    &__wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: calc( 9 / 16 * 100%);
+      border: 2px solid currentColor;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    }
+  }
+
+  .item {
+    margin: var(--item-margin) var(--item-margin) 0;
+    width: var(--item-width);
+    color: var(--item-color-text);
+    background-color: var(--item-color-background);
+
+    .board:not(.board--maximized) .group:not(.group--maximized) & {}
+    .board--maximized .group:not(.group--maximized) & {}
+    .board:not(.board--maximized) .group--maximized & {
+      width: var(--item-width-max);
+    }
+    .board--maximized .group--maximized & {
+      width: var(--item-width-max-max);
+    }
+
+    &__nav {
+      color: var(--item-color-nav-text);
+      background-color: var(--item-color-nav-background);
+    }
+
+    &__label {
+      cursor: default;
+    }
+
+    &__amount {
+      margin: auto 0;
+
+      [data-nav="show"],
+      [data-nav="hide"] {
+        font-weight: bold;
+      }
+
+      &[data-item-amount="0"] {
+        display: none;
+      }
+    }
+
+    &__stats {}
+
+    &__content {}
+
+    &__scroll {}
+
+    &__children {}
+
+    &:not(.item--open) {
+      .item {
+        &__nav {
+          [data-action="item.close"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &--open {
+      .item {
+        &__nav {
+          [data-action="item.open"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &:not(.item--marked) {
+      .item {
+        &__nav {
+          [data-action="item.unmark"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &--marked {
+      --item-color-nav-background: var(--item-color-nav-background-marked);
+
+      .item {
+        &__nav {
+          [data-action="item.mark"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &:not(.item--label) {
+      .item {
+        &__amount {
+          display: none;
+        }
+        &__nav {
+          [data-action="item.more"],
+          [data-action="item.less"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &--label {
+      .item {
+        &__nav {
+          [data-action="item.modal"],
+          [data-action="item.link"],
+          [data-action="item.open"] {
+            display: none;
+          }
+        }
+        &__content {
+          display: none;
+        }
+      }
+    }
+
+    &--note {
+      --control-top-count: 3;
+
+      [data-note-style="both"] & {
+        --control-top-count: 4;
+      }
+
+      .item {
+        &__nav {
+          [data-action="item.link"] {
+            display: none;
+          }
+          [data-action="item.modal"] {
+            [data-note-style="content"] & {
+              display: none;
+            }
+          }
+          [data-action="item.open"] {
+            [data-note-style="modal"] & {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    &--url {
+      --control-top-count: 3;
+
+      .item {
+        &__nav {
+          [data-action="item.modal"],
+          [data-action="item.open"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &--youtube {
+      --control-top-count: 4;
+
+      [data-youtube-style="both"] & {
+        --control-top-count: 5;
+      }
+
+      .item {
+        &__nav {
+          [data-action="item.modal"] {
+            [data-youtube-style="content"] & {
+              display: none;
+            }
+          }
+          [data-action="item.open"] {
+            [data-youtube-style="modal"] & {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

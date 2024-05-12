@@ -1,0 +1,136 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {
+  --board-nav-height: calc(var(--app-ref-bh) + var(--app-size-s) * 2);
+  --board-margin: var(--app-size-p);
+  --board-padding: var(--app-size-m);
+  --board-columns: 1;
+  --board-width: calc((100vw - var(--scrollbar-width) * 2 - var(--board-margin) * 2 * var(--board-columns)) / var(--board-columns));
+}
+
+@mixin styles {
+  .board {
+    margin: var(--board-margin);
+    width: var(--board-width);
+    background-color: var(--board-color-background);
+
+    &__nav {
+      color: var(--board-color-nav-text);
+      background-color: var(--board-color-nav-background);
+    }
+
+    &__label {}
+
+    &__stats {}
+
+    &__content {}
+
+    &__scroll {}
+
+    &__children {}
+
+    &:not(.board--open) {
+      .board {
+        &__nav {
+          [data-action="board.minimize"],
+          [data-action="board.maximize"],
+          [data-action="board.close"],
+          [data-action="group.create"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &--open {
+      .board {
+        &__nav {
+          --control-top-count: 3;
+          --control-bottom-count: 2;
+
+          [data-action="board.open"] {
+            display: none;
+          }
+        }
+        &__children {
+
+          &:empty {
+            height: 100%;
+
+            &::after {
+              position: relative;
+              padding: var(--board-padding);
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-weight: bold;
+              content: '[empty]';
+            }
+          }
+        }
+      }
+
+      &:not(.board--maximized) {
+        .board {
+          &__nav {
+            [data-action="board.minimize"] {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &.board {
+        &--maximized {
+          --board-margin: 0;
+          --board-width: calc(100vw - var(--scrollbar-width) * 2);
+          padding: var(--board-padding) 0;
+          height: calc(100vh - var(--header-height));
+
+          .board {
+            &__nav {
+              [data-action="board.maximize"] {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &s {
+      position: relative;
+
+      &__list {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        &:empty {
+          &::after {
+            position: relative;
+            padding: var(--board-padding);
+            width: 100%;
+            min-height: 50vh;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            content: 'Create your first board now!';
+          }
+        }
+      }
+    }
+  }
+}

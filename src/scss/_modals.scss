@@ -1,0 +1,138 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {
+  --modal-youtube-width: 100%;
+}
+
+@mixin styles {
+  .ui-modal {
+
+    .ui-modal__dialog {
+      border-radius: var(--app-size-r);
+      overflow: hidden;
+
+      @include util.media-query('mobile-tablet-portrait') {
+        top: auto;
+        bottom: 0;
+        transform: translate(-50%, 0);
+      }
+
+      &-content {
+        hr {
+          margin: var(--app-size-h) 0;
+          border: 0;
+          border-top: var(--app-size-l) solid var(--content-color-spacer);
+        }
+        .ui-text {
+          padding: 0 0 0 calc(var(--ui-input-margin-inline) + var(--ui-input-label-padding-horizontal));
+        }
+      }
+    }
+
+    &--settings {
+      .ui-modal {
+        &__dialog {
+          &-footer {}
+          &-controls {
+            [data-action="settings.reset"] {
+              order: 2;
+              margin: auto;
+            }
+            .ui-button--cancel {
+              order: 1;
+              margin-left: 0;
+            }
+            .ui-button--confirm {
+              order: 3;
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+      .ui-input {
+        &--number {
+          .ui-input__input {
+            max-width: 5rem;
+          }
+        }
+        &--select {
+          .ui-input__input {
+            max-width: max-content;
+          }
+        }
+      }
+    }
+    &--theme {
+      .ui-modal {
+        &__dialog {
+          &-footer {}
+          &-controls {
+            [data-action="theme.reset"] {
+              order: 2;
+            }
+            .ui-button--cancel {
+              order: 1;
+              margin-left: 0;
+            }
+            .ui-button--confirm {
+              order: 10;
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      .ui-input {
+        &--range {
+          .ui-input__input {
+            width: 8rem;
+          }
+        }
+      }
+    }
+    &--board {}
+    &--group {}
+    &--item {
+      &[data-item-variant="label"] {
+        .ui-input--note,
+        .ui-input--url,
+        .ui-input--youtube {
+          display: none;
+        }
+      }
+      &[data-item-variant="note"] {
+        .ui-input--amount,
+        .ui-input--url,
+        .ui-input--youtube {
+          display: none;
+        }
+      }
+      &[data-item-variant="url"] {
+        .ui-input--amount,
+        .ui-input--note,
+        .ui-input--youtube {
+          display: none;
+        }
+      }
+      &[data-item-variant="youtube"] {
+        .ui-input--amount,
+        .ui-input--note,
+        .ui-input--url {
+          display: none;
+        }
+      }
+
+      &-note {
+        --ui-modal-min-width: 50%;
+      }
+
+      &-youtube {
+        --ui-modal-width: var(--modal-youtube-width);
+        --ui-modal-max-width: 100%;
+      }
+    }
+  }
+}

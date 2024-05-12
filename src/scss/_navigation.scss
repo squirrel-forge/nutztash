@@ -1,0 +1,131 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {
+  --navigation-inline-item-margin: var(--app-size-m);
+  --navigation-transition: 0.15s ease;
+
+  @include util.media-query('mobile-medium') {
+    --navigation-inline-item-margin: 0;
+  }
+}
+
+@mixin styles {
+  [data-nav] {
+    position: relative;
+    transition: var(--navigation-transition);
+
+    [data-nav="nav"] {}
+    [data-nav="show"] {}
+    [data-nav="hide"] {}
+    [data-nav="drop"] {}
+    [data-nav="scroll"] {}
+
+    &[data-nav="inline"] {
+      [data-nav="nav"] {
+        & > * {
+          margin-inline: var(--navigation-inline-item-margin);
+
+          &:first-child {
+            margin-inline-start: 0;
+          }
+          &:last-child {
+            margin-inline-end: 0;
+          }
+        }
+      }
+    }
+
+    &[data-nav="menu"] {
+      @include util.media-query('tablet-landscape-desktop') {
+        [data-nav="show"],
+        [data-nav="hide"] {
+          display: none;
+        }
+      }
+      @include util.media-query('mobile-tablet-portrait') {
+
+        [data-nav="scroll"] {
+          max-height: calc(100vh - var(--header-height));
+          overflow-y: scroll;
+        }
+        [data-nav="show"] {}
+        [data-nav="hide"] {
+          pointer-events: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+        [data-nav="drop"] {
+          pointer-events: none;
+          position: absolute;
+          top: var(--header-height);
+          right: 0;
+          transform: translate(0, calc(-100% - var(--header-offset)));
+        }
+
+        [data-nav="show"]:focus,
+        [data-nav="nav"]:focus-within [data-nav="show"] {
+          opacity: 0;
+        }
+
+        [data-nav="drop"]:focus,
+        [data-nav="nav"]:focus-within [data-nav="drop"],
+        [data-nav="show"]:focus + [data-nav="drop"] {
+          pointer-events: auto;
+          transform: translate(0, calc(var(--app-size-s) * -1));
+        }
+
+        [data-nav="nav"]:focus-within + [data-nav="hide"] {
+          pointer-events: auto;
+          opacity: 1;
+        }
+      }
+    }
+
+    &[data-nav="options"] {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      [data-nav="show"] {}
+      [data-nav="hide"] {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+      }
+      [data-nav="nav"] {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      [data-nav="drop"] {
+        max-width: 0;
+        overflow-x: hidden;
+      }
+
+      [data-nav="show"]:focus,
+      [data-nav="nav"]:focus-within [data-nav="show"] {
+        opacity: 0;
+      }
+
+      [data-nav="drop"]:focus,
+      [data-nav="nav"]:focus-within [data-nav="drop"],
+      [data-nav="show"]:focus + [data-nav="drop"] {
+        pointer-events: auto;
+        max-width: 100%;
+        overflow-x: visible;
+      }
+
+      [data-nav="nav"]:focus-within + [data-nav="hide"] {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+}

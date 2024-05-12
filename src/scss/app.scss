@@ -1,0 +1,443 @@
+/**
+ * Application stylesheet
+ */
+
+/**
+ * Vendor components
+ */
+@use '~@squirrel-forge/sass-util' as util with (
+  $images-assets-cache: '?version=1',
+);
+@use '~@squirrel-forge/ui-form' as form;
+@use '~@squirrel-forge/ui-modal' as modal;
+
+/**
+ * Local components and layout
+ */
+@use 'theme';
+@use 'page';
+@use 'view';
+@use 'shared';
+@use 'boards';
+@use 'groups';
+@use 'items';
+@use 'navigation';
+@use 'modals';
+@use 'header';
+@use 'footer';
+
+/** --- Begin document output --- **/
+
+/**
+ * Fonts must always be first in a stylesheet
+ */
+@use 'fonts';
+
+/**
+ * Configuration
+ */
+@include util.colors-config((
+  'white': (#ffffff, (alpha)),
+  'whitesmoke': #F5F5F5,
+  'black': (#000000, (alpha)),
+  'darkblue': (#00008b, (alpha)),
+  'mediumblue': #0000CD,
+  'lightblue': #ADD8E6,
+  'deepskyblue': #00BFFF,
+  'firebrick': #B22222,
+  'darkred': #8B0000,
+  'darkgreen': #006400,
+  'forestgreen': #228B22,
+  'yellow': #FFD700,
+),(
+  alpha: (.1,.25,.5,.6,.80,.9),
+  invert: (50%,100%),
+  adjust-hue: (90deg,180deg,270deg),
+  darken: (50%,100%),
+  lighten: (50%,100%),
+  saturate: (50%,100%),
+  desaturate: (50%,100%),
+),(
+  color: (color, (base-only)),
+));
+@include util.text-normalize-config((
+  headline-margin: 1rem 0,
+  paragraph-margin: 1rem 0,
+));
+@include util.font-config((
+  'default': (
+    font-family: var(--ui-font-default),
+    font-size: var(--app-font-size),
+    line-height: var(--app-line-height),
+  ),
+));
+@include util.button-core-config((
+  margin-inline: 0,
+  padding: var(--app-size-s) var(--app-size-m) var(--app-size-s),
+  icon-padding: var(--app-size-s) var(--app-size-m) var(--app-size-s),
+  icon-spacing: var(--app-size-m),
+  border: 0,
+  border-radius: var(--app-size-r),
+));
+@include util.tooltip-config((
+  color-text: var(--tooltip-color-text),
+  color-background: var(--tooltip-color-background),
+  padding: var(--app-size-s) var(--app-size-h) var(--app-size-s),
+  relative-margin: calc(var(--app-size-s) * -1) 0 calc(var(--app-size-s) * -1),
+  border-radius: var(--app-size-r),
+  arrow-height: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 3),
+  arrow-width: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 2),
+  arrow-offset: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 4),
+));
+@include util.icons-core-config((
+  size : var(--app-size-i),
+  unit: 1.4rem,
+));
+@include util.wrap-config((
+  --header: (
+    padding: var(--app-size-s) var(--app-size-h),
+    justify-content: space-between,
+    align-items: center,
+  ),
+  --menu-drop: (
+    padding: var(--app-size-s) var(--app-size-h) var(--app-size-h),
+    flex-direction: column,
+    _at_tablet-desktop: (
+      padding: 0,
+      flex-direction: row,
+    ),
+  ),
+  --options-drop: (
+    --ui-wrap-wrap: nowrap,
+    padding: 0,
+    flex-direction: row,
+  ),
+  --object-nav: (
+    --ui-wrap-wrap: nowrap,
+    flex-direction: row,
+    justify-content: flex-start,
+    align-items: center,
+  ),
+  --footer: (
+    padding: var(--app-size-s) var(--app-size-h),
+    justify-content: space-between,
+    align-items: center
+  ),
+  --view: (
+    height: 100%,
+    align-items: flex-start,
+  ),
+  --fieldset: (
+    flex-direction: column,
+  ),
+));
+@include modal.config((
+  padding: 0,
+  content-padding: var(--app-size-m) calc(var(--app-size-h) * 2) calc(var(--app-size-h) * 3.5),
+  header-spacing: var(--app-size-l),
+  footer-spacing: var(--app-size-l),
+  backdrop-color: var(--modal-color-backdrop),
+  background-color: var(--modal-color-background),
+  view-offset-x: var(--app-size-h),
+  view-offset-y: var(--app-size-h),
+  transition: 0.15s ease,
+));
+@include form.fieldset-config((
+  padding: 0,
+  background-color: transparent,
+));
+@include form.input-config((
+  input-padding: var(--app-size-m) var(--app-size-h),
+  input-border-radius: var(--app-size-r),
+  input-background-color : var(--input-color-background),
+  error-input-border-color : var(--error-color-background),
+  error-input-background-color : var(--input-color-background),
+  error-text-color : var(--error-color-text),
+  error-background-color : var(--error-color-background),
+  error-padding: var(--app-size-s) var(--app-size-h) var(--app-size-s),
+  error-border-radius: var(--app-size-r),
+  error-tail-width: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 2),
+  error-tail-height: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 3),
+  error-tail-indent: calc(var(--ui-icon-size) * var(--ui-icon-unit) / 4),
+));
+
+/**
+ * Define root variables
+ */
+:root {
+  @include fonts.properties;
+
+  // Theme defaults
+  @include theme.properties;
+
+  // App colors
+  --header-color-background: var(--modal-color-header-background);
+  --header-color-text: var(--modal-color-header-text);
+  --header-color-shadow: var(--modal-color-shadow);
+  --footer-color-background: var(--modal-color-footer-background);
+  --footer-color-text: var(--modal-color-footer-text);
+  --footer-color-shadow: var(--modal-color-shadow);
+
+  // App sizes
+  --app-font-size: 16px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 1.9rem; // Button icon only width
+  --app-ref-bh: 1.7rem; // Button icon only height
+  --app-size-s: 0.15rem; // Small size
+  --app-size-m: 0.25rem; // Medium size
+  --app-size-p: 0.25rem; // Margin size
+  --app-size-r: 0.25rem; // Border radius
+  --app-size-l: 2px; // Vertical line spacing
+  --app-size-h: 0.5rem; // Horizontal spacing
+  --app-size-i: 1; // Icon size
+}
+
+/**
+ * Interface sizes
+ * @default: default
+ */
+[data-interface-size="tiny"] {
+  --app-font-size: 10px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 1.79rem; // Button icon only width
+  --app-ref-bh: 1.6rem; // Button icon only height
+  --app-size-s: 0.1rem; // Small size
+  --app-size-m: 0.15rem; // Medium size
+  --app-size-p: 0.15rem; // Margin size
+  --app-size-r: 0.15rem; // Border radius
+  --app-size-l: 1px; // Vertical line spacing
+  --app-size-h: 0.25rem; // Horizontal spacing
+  --app-size-i: 1; // Icon size
+}
+[data-interface-size="small"] {
+  --app-font-size: 13px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 1.79rem; // Button icon only width
+  --app-ref-bh: 1.6rem; // Button icon only height
+  --app-size-s: 0.1rem; // Small size
+  --app-size-m: 0.2rem; // Medium size
+  --app-size-p: 0.2rem; // Margin size
+  --app-size-r: 0.2rem; // Border radius
+  --app-size-l: 1px; // Vertical line spacing
+  --app-size-h: 0.35rem; // Horizontal spacing
+  --app-size-i: 1; // Icon size
+}
+[data-interface-size="mobile"] {
+  --app-font-size: 18px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 2.58rem; // Button icon only width
+  --app-ref-bh: 2.39rem; // Button icon only height
+  --app-size-s: 0.25rem; // Small size
+  --app-size-m: 0.35rem; // Medium size
+  --app-size-p: 0.35rem; // Margin size
+  --app-size-r: 0.25rem; // Border radius
+  --app-size-l: 3px; // Vertical line spacing
+  --app-size-h: 0.5rem; // Horizontal spacing
+  --app-size-i: 1.35; // Icon size
+}
+[data-interface-size="medium"] {
+  --app-font-size: 20px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 2.99rem; // Button icon only width
+  --app-ref-bh: 2.6rem; // Button icon only height
+  --app-size-s: 0.25rem; // Small size
+  --app-size-m: 0.45rem; // Medium size
+  --app-size-p: 0.45rem; // Margin size
+  --app-size-r: 0.35rem; // Border radius
+  --app-size-l: 4px; // Vertical line spacing
+  --app-size-h: 0.5rem; // Horizontal spacing
+  --app-size-i: 1.5; // Icon size
+}
+[data-interface-size="large"] {
+  --app-font-size: 26px; // Font size
+  --app-line-height: 1.25; // Line height
+  --app-ref-bw: 3.35rem; // Button icon only width
+  --app-ref-bh: 2.95rem; // Button icon only height
+  --app-size-s: 0.25rem; // Small size
+  --app-size-m: 0.45rem; // Medium size
+  --app-size-p: 0.45rem; // Margin size
+  --app-size-r: 0.35rem; // Border radius
+  --app-size-l: 5px; // Vertical line spacing
+  --app-size-h: 0.65rem; // Horizontal spacing
+  --app-size-i: 1.75; // Icon size
+}
+
+/**
+ * Define dependent root variables
+ */
+:root {
+
+  // Utility custom properties
+  @include util.text-normalize-properties;
+  @include util.colors-properties;
+  @include util.list-normalize-properties;
+  @include util.wrap-properties;
+  @include util.button-core-properties;
+  @include util.icons-core-properties;
+  @include util.icons-styled-properties;
+  @include util.tooltip-properties;
+  @include form.fieldset-properties;
+  @include form.input-properties;
+  @include modal.properties;
+  @include util.media-query('mobile') {
+    @include modal.properties((
+      view-offset-x: 0,
+      view-offset-y: 0,
+      min-width: 100%,
+      max-width: 100%,
+    ));
+  }
+
+  // Component and layout properties
+  @include page.properties;
+  @include header.properties;
+  @include footer.properties;
+  @include navigation.properties;
+  @include modals.properties;
+  @include view.properties;
+  @include shared.properties;
+  @include boards.properties;
+  @include groups.properties;
+  @include items.properties;
+}
+
+/**
+ * Reset,
+ * Text normalize and helpers,
+ * Color styles,
+ * Font styles,
+ * Wrap styles,
+ */
+@include util.reset-styles;
+@include util.text-normalize-styles;
+@include util.text-a11y-styles;
+@include util.text-align-styles;
+@include util.text-breaks-styles;
+@include util.list-normalize-styles;
+@include util.list-customize-styles;
+@include util.colors-styles;
+@include util.font-styles;
+@include util.wrap-styles;
+@include util.icons-core-styles;
+@include util.icons-styled-styles;
+@include util.button-core-styles() {
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
+    background-color: var(--button-color-background-interactive);
+  }
+
+  @include util.media-query('mobile') {
+    &--hide-label-m {
+      .#{util.$button-class} {
+        &__label {
+          @include util.mixins-hide-accessible;
+        }
+      }
+    }
+  }
+}
+@include util.tooltip-styles() {
+  .#{util.$tooltip-class}__tip {
+    filter: drop-shadow(0 0 var(--app-size-m) var(--tooltip-color-shadow));
+  }
+}
+@include form.fieldset-styles;
+@include form.input-styles() {
+  &__error {
+    font-weight: bold;
+  }
+  &--error-visible {
+    .#{form.$input-class}__error {
+      filter: drop-shadow(0 0 var(--app-size-m) var(--error-color-shadow));
+    }
+  }
+}
+@include modal.styles() {
+  &__dialog {
+    filter: drop-shadow(0 0 var(--app-size-m) var(--modal-color-shadow));
+
+    &-header {
+      padding: var(--app-size-m) var(--app-size-h) var(--app-size-m);
+      color: var(--modal-color-header-text);
+      background-color: var(--modal-color-header-background);
+    }
+    &-title {
+      margin-right: auto;
+      margin-left: var(--app-size-m);
+      padding-right: var(--app-size-h);
+      transform: translate(0, 10%);
+      @include util.mixins-no-select;
+    }
+    &-footer {
+      padding: var(--app-size-m) var(--app-size-h) var(--app-size-m);
+      color: var(--modal-color-footer-text);
+      background-color: var(--modal-color-footer-background);
+    }
+    &-content {
+      color: var(--modal-color-text);
+      background-color: var(--modal-color-content-background);
+    }
+  }
+}
+
+// Responsive tooltip
+util.$tooltip-modifier: '--responsive';
+@media screen and (min-width: 992px) {
+  @include util.tooltip-styles() {
+    .#{util.$tooltip-class}__tip {
+      filter: drop-shadow(0 0 var(--app-size-m) var(--tooltip-color-shadow));
+    }
+  }
+}
+
+// Custom button effects
+.ui-button {
+
+  &:not(:disabled):not(.ui-button--static):not(.ui-tooltip):not(.ui-tooltip--responsive) {
+    &:hover,
+    &:focus {
+      .ui-button {
+        &__label {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    &.ui-tooltip--responsive {
+      &:not(:disabled):hover,
+      &:not(:disabled):focus {
+        .ui-button {
+          &__label {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Component and layout styles
+ */
+@include page.styles;
+@include navigation.styles;
+@include header.styles;
+@include footer.styles;
+@include modals.styles;
+@include view.styles;
+@include shared.styles;
+@include boards.styles;
+@include groups.styles;
+@include items.styles;
+
+body {
+  font-family: var(--ui-font-default);
+  background-color: var(--view-color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  line-height: inherit;
+}

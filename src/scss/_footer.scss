@@ -1,0 +1,32 @@
+/**
+ * Require modules
+ */
+@use '~@squirrel-forge/sass-util' as util;
+
+@mixin properties {}
+
+@mixin styles {
+  .footer {
+    z-index: 99;
+    position: relative;
+    color: var(--footer-color-text);
+    background-color: var(--footer-color-background);
+    filter: drop-shadow(0 0 var(--app-size-m) var(--footer-color-shadow));
+
+    @include util.media-query('mobile-tablet-portrait') {
+      display: none;
+    }
+
+    &__copy {
+      --ui-text-normalize-paragraph-margin: 0;
+    }
+
+    .ui-button {
+      &__label {
+        @include util.media-query('mobile-medium') {
+          @include util.mixins-hide-accessible;
+        }
+      }
+    }
+  }
+}

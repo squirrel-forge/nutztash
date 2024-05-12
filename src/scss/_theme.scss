@@ -1,0 +1,42 @@
+@mixin properties {
+  --modal-color-header-text: var(--ui-color-white);
+  --modal-color-header-background: var(--ui-color-darkblue);
+  --modal-color-footer-text: var(--ui-color-white);
+  --modal-color-footer-background: var(--ui-color-darkblue);
+  --modal-color-text: var(--ui-color-black);
+  --modal-color-background: var(--ui-color-white);
+  --modal-color-content-background: var(--ui-color-lightblue);
+  --modal-color-backdrop: var(--ui-color-darblue-op-80);
+  --modal-color-shadow: var(--ui-color-black);
+
+  --tooltip-color-text: var(--ui-color-black);
+  --tooltip-color-background: var(--ui-color-yellow);
+  --tooltip-color-shadow: var(--ui-color-black);
+
+  --button-color-background-interactive: var(--ui-color-white-op-25);
+
+  --input-color-background: var(--ui-color-white);
+  --error-color-background: var(--ui-color-firebrick);
+  --error-color-text: var(--ui-color-white);
+  --error-color-shadow: var(--ui-color-black);
+
+  --view-color-background: var(--ui-color-whitesmoke);
+
+  --content-color-spacer: var(--ui-color-white);
+
+  --board-color-background: var(--ui-color-black-op-10);
+  --board-color-nav-text: var(--ui-color-white);
+  --board-color-nav-background: var(--ui-color-darkblue);
+
+  --group-color-background: var(--ui-color-lightblue);
+  --group-color-nav-text: var(--ui-color-white);
+  --group-color-nav-background: var(--ui-color-mediumblue);
+  --group-color-nav-background-marked: var(--ui-color-darkred);
+  --group-color-nav-background-completed: var(--ui-color-darkgreen);
+
+  --item-color-text: var(--ui-color-black);
+  --item-color-background: var(--ui-color-whitesmoke);
+  --item-color-nav-text: var(--ui-color-white);
+  --item-color-nav-background: var(--ui-color-firebrick);
+  --item-color-nav-background-marked: var(--ui-color-forestgreen);
+}

@@ -1,0 +1,20 @@
+/**
+ * Font files are included directly, use only woff and woff2
+ * Load path is always relative to the project root: project://
+ */
+
+$-saira-weights: ('regular',700);
+
+@each $weight in $-saira-weights {
+  @font-face {
+    font-display: swap;
+    font-family: 'Saira Semi Condensed';
+    font-style: auto;
+    font-weight: $weight;
+    src: url(base64load('src/fonts/saira-semi-condensed-v13-latin_latin-ext/saira-semi-condensed-v13-latin_latin-ext-#{$weight}.woff2','font/woff2')) format('woff2');
+  }
+}
+
+@mixin properties() {
+  --ui-font-default: "Saira Semi Condensed", sans-serif;
+}
