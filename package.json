@@ -1,0 +1,40 @@
+{
+  "name": "@squirrel-forge/nutztash",
+  "version": "1.0.0",
+  "description": "nutZtash - The private todo and notes tool",
+  "scripts": {
+    "build:html": "cp -rf index.html docs/index.html && cp -rf nutztash.svg docs/nutztash.svg && cp -rf manifest.json docs/manifest.json",
+    "build:css": "build-scss src/scss docs/css -c -x -s -p",
+    "build:js": "simple-webpack src/js docs/js -p -s",
+    "build:css:debug": "build-scss src/scss docs/css -p -x -u -o=_dev",
+    "build:js:debug": "simple-webpack src/js docs/js -p --no-minify --keep-names -e=../../../../_dev/webpack.js -u -s",
+    "build:debug": "npm run build:html && npm run build:css:debug && npm run build:js:debug",
+    "build": "npm run build:html && npm run build:css && npm run build:js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/squirrel-forge/nutztash.git"
+  },
+  "keywords": [],
+  "author": "Daniel Hartwell <me@siux.info> (http://siux.info)",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/squirrel-forge/nutztash/issues"
+  },
+  "homepage": "https://github.com/squirrel-forge/nutztash#readme",
+  "devDependencies": {
+    "@squirrel-forge/build-scss": "^0.8.x",
+    "@squirrel-forge/sass-base64-loader": "^0.11.x",
+    "@squirrel-forge/sass-package-importer": "^0.11.x",
+    "@squirrel-forge/simple-webpack": "^0.12.x"
+  },
+  "dependencies": {
+    "@squirrel-forge/sass-util": "^0.10.x",
+    "@squirrel-forge/ui-core": "^0.12.x",
+    "@squirrel-forge/ui-form": "^0.11.x",
+    "@squirrel-forge/ui-modal": "^0.7.x",
+    "@squirrel-forge/ui-util": "^0.10.x"
+  }
+}
