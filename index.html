@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>nutZtash - The private todo and notes tool</title>
+    <meta name="description" content="The private todo and notes tool for every device" />
+    <meta property="og:title" content="nutZtash - The private todo and notes tool" />
+    <meta property="og:description" content="The private todo and notes tool for every device" />
+    <meta property="og:site_name" content="nutZtash" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="nutztash.svg">
+    <link rel="stylesheet" href="css/app.min.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-status-bar" content="darkblue" />
+    <meta name="theme-color" content="darkblue" />
+</head>
+<body class="page ui-font--default">
+<header id="header" class="page__header header">
+    <div class="ui-wrap ui-wrap--header">
+        <div class="header__logo ui-tooltip" data-tip="br" tabindex="0">
+            <h1>
+                <span class="ui-icon ui-icon--inline" data-icon="acorn"></span>
+                <span>nutZtash <small data-version></small></span>
+            </h1>
+            <p class="ui-tooltip__tip">
+                <small>Lightweight and fully private todo and notes tool.</small>
+            </p>
+        </div>
+        <nav data-nav="menu">
+            <div data-nav="nav">
+                <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-nav="show" type="button">
+                    <span class="ui-icon" data-icon="menu"><span></span></span>
+                    <span class="ui-button__label ui-tooltip__tip">Show menu</span>
+                </button>
+                <div data-nav="drop" tabindex="0">
+                    <div data-nav="scroll">
+                        <div class="ui-wrap ui-wrap--menu-drop">
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.install" type="button" disabled style="display:none">
+                                <span class="ui-icon" data-icon="download"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Install</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="board.create" type="button" disabled>
+                                <span class="ui-icon" data-icon="action-create"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">New board</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="settings.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="settings"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Settings</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="theme.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="user"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Theme</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="storage.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="save"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Storage</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="about.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="siux"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">About</span>
+                            </button>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="privacy.show" type="button" disabled>
+                                <span class="ui-icon" data-icon="info"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Privacy</span>
+                            </button>
+                            <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
+                                <span class="ui-icon" data-icon="unknown"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Report a bug</span>
+                            </a>
+                            <a class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
+                                <span class="ui-icon" data-icon="github"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
+                            </a>
+                            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-action="app.share" type="button" disabled>
+                                <span class="ui-icon" data-icon="arrow-small"><span></span></span>
+                                <span class="ui-button__label ui-tooltip__tip">Share</span>
+                            </button>
+                            <div class="header__copy">&copy;2024 squirrel-forge</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="ui-button ui-button--icon ui-tooltip--responsive" data-tip="bl" data-nav="hide" type="button">
+                <span class="ui-icon" data-icon="close"></span>
+                <span class="ui-button__label ui-tooltip__tip">Hide menu</span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main id="view" class="page__view view">
+    <div class="ui-wrap ui-wrap--view">
+        <div class="view__scroll" data-scroller>
+            <div class="view__content">
+                <div class="boards">
+                    <div class="boards__list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="welcome" class="ui-text--hide-a11y">
+        <h2 class="headline">The ultimate nutZtash</h2>
+        <div class="content">
+            <p>Welcome to your first private <span class="ui-icon ui-icon--inline" data-icon="acorn"><span></span></span> nutZtash.</p>
+            <p>Start by creating a new board, that you can then fill with groups and items.</p>
+        </div>
+    </section>
+    <section id="about" class="ui-text--hide-a11y">
+        <h3 class="headline">About the nutZtash</h3>
+        <div class="content">
+            <p>It's a lighweight <q>todo</q> and <q>notes</q> application, intended for personal use.</p>
+            <p>It can hold up to ~5mib of data in local storage, but is therefore limited in the amount of
+                entries of varied size that can be saved at any given time.</p>
+            <p>Feel free to report bugs and suggest features, but due to previously mentioned limitations,
+                extended features are likely not to happen.</p>
+            <p>This might only happen, if some free key-value api presents itself as an alternative storage,
+                which would then be added with additional entry rsa encryption to ensure privacy.
+                This could allow sharing without the need of manual imports and exports,
+                but as of now these features are not in scope.</p>
+        </div>
+    </section>
+    <section id="privacy" class="ui-text--hide-a11y">
+        <h4 class="headline">The privacy is all yours</h4>
+        <div class="content">
+            <p>This application does not use cookies or send any information across the internet.</p>
+            <p>All data, settings and theme are saved in your browsers local storage and can be imported,
+                exported and deleted at any time.</p>
+            <p>No outside party, except what you allow within your browser
+                (by default nobody except code on the hosting site, the application itself, or browser plugins),
+                will be able to access any of your information.</p>
+        </div>
+    </section>
+</main>
+
+<footer id="footer" class="page__footer footer">
+    <div class="ui-wrap ui-wrap--footer">
+        <div class="footer__copy">&copy;2024 squirrel-forge</div>
+        <nav data-nav="inline">
+            <div data-nav="nav">
+                <button class="ui-button ui-button--icon ui-tooltip" data-tip="tl" data-action="about.show" type="button" disabled>
+                    <span class="ui-icon" data-icon="siux"><span></span></span>
+                    <span class="ui-button__label ui-tooltip__tip">About</span>
+                </button>
+                <button class="ui-button ui-button--icon ui-tooltip" data-tip="tl" data-action="privacy.show" type="button" disabled>
+                    <span class="ui-icon" data-icon="info"><span></span></span>
+                    <span class="ui-button__label ui-tooltip__tip">Privacy</span>
+                </button>
+                <a class="ui-button ui-button--icon ui-tooltip" data-tip="tl" href="https://github.com/squirrel-forge/nutztash/issues" target="_blank">
+                    <span class="ui-icon" data-icon="unknown"><span></span></span>
+                    <span class="ui-button__label ui-tooltip__tip">Report a bug</span>
+                </a>
+                <a class="ui-button ui-button--icon ui-tooltip" data-tip="tl" href="https://github.com/squirrel-forge/nutztash#readme" target="_blank">
+                    <span class="ui-icon" data-icon="github"><span></span></span>
+                    <span class="ui-button__label ui-tooltip__tip">Sourcecode</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</footer>
+
+<script type="module" src="js/app.min.js"></script>
+</body>
+</html>
