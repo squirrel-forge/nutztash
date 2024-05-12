@@ -1,0 +1,6 @@
+{
+  "@squirrel-forge/sass-base64-loader": {},
+  "@squirrel-forge/sass-package-importer": {
+    "options": { "paths" : [ "../../", "node_modules" ] }
+  }
+}
