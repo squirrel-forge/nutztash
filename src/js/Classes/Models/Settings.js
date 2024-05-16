@@ -137,6 +137,11 @@ export class Settings extends Model {
             value : 'label',
             options : [ 'label', 'note', 'url', 'youtube' ],
         },
+        maximizeBoardWithGroup : {
+            label : { text : 'Maximize board if group is maximized' },
+            type : 'checkbox',
+            value : window.innerWidth < 992,
+        },
         exclusiveMaximize : {
             label : { text : 'Show only maximized board or group' },
             type : 'checkbox',

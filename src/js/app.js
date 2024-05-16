@@ -34,7 +34,7 @@ const scr = initLayoutHelpers( DEBUG_MODE );
  * @private
  * @type {Application}
  */
-const app = new Application( '1.0.0', 'https://squirrel-forge.github.io/nutztash/', scr, DEBUG_MODE );
+const app = new Application( '1.0.1', 'https://squirrel-forge.github.io/nutztash/', scr, DEBUG_MODE );
 
 docReady( () => {
     readyLayoutHelpers();

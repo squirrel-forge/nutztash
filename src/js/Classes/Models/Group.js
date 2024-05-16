@@ -168,4 +168,16 @@ export class Group extends Model {
         this.dom.classList[ this.marked ? 'add' : 'remove' ]( 'group--marked' );
         super.update( stats );
     }
+
+    /**
+     * Action maximize
+     * @public
+     * @return {void}
+     */
+    actionMaximize() {
+        if ( this.constructor.app.settings.maximizeBoardWithGroup ) {
+            if ( !this.parent.isMaximized() ) this.parent.actionMaximize();
+        }
+        super.actionMaximize();
+    }
 }
