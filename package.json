@@ -6,10 +6,11 @@
     "build:html": "cp -rf index.html docs/index.html && cp -rf nutztash.svg docs/nutztash.svg && cp -rf manifest.json docs/manifest.json",
     "build:css": "build-scss src/scss docs/css -c -x -s -p",
     "build:js": "simple-webpack src/js docs/js -p -s",
+    "build:icons": "node src/node/iconmap.js",
     "build:css:debug": "build-scss src/scss docs/css -p -x -u -o=_dev",
     "build:js:debug": "simple-webpack src/js docs/js -p --no-minify --keep-names -e=../../../../_dev/webpack.js -u -s",
-    "build:debug": "npm run build:html && npm run build:css:debug && npm run build:js:debug",
-    "build": "npm run build:html && npm run build:css && npm run build:js",
+    "build:debug": "npm run build:html && npm run build:css:debug && npm run build:icons && npm run build:js:debug",
+    "build": "npm run build:html && npm run build:css && npm run build:icons  && npm run build:js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
