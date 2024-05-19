@@ -3,6 +3,7 @@
  */
 import { Model } from '../Model';
 import { afterPaint, appendAfter, debounce, isEmpty } from '@squirrel-forge/ui-util';
+import { iconsOptions } from '../../../generated/icons.js';
 
 /**
  * Bind model
@@ -138,6 +139,11 @@ export class Item extends Model {
         rel : {
             type : 'hidden',
             required : true,
+        },
+        icon : {
+            type : 'text',
+            max : 32,
+            autocomplete : iconsOptions,
         },
         label : {
             type : 'text',

@@ -3,6 +3,7 @@
  */
 import { appendAfter, debounce } from '@squirrel-forge/ui-util';
 import { Model } from '../Model';
+import { iconsOptions } from '../../../generated/icons.js';
 
 const _MODEL_ACTIONS = {
     'board.toggle' : [
@@ -93,6 +94,11 @@ export class Board extends Model {
     static childrenHost = '.board__children';
 
     static modelFields = {
+        icon : {
+            type : 'text',
+            max : 32,
+            autocomplete : iconsOptions,
+        },
         label : {
             type : 'text',
             max : 60,

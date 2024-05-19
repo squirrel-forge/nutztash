@@ -3,6 +3,7 @@
  */
 import { Model } from '../Model';
 import { afterPaint, appendAfter, debounce } from '@squirrel-forge/ui-util';
+import { iconsOptions } from '../../../generated/icons.js';
 
 const _MODEL_ACTIONS = {
     'group.toggle' : [
@@ -122,6 +123,11 @@ export class Group extends Model {
         rel : {
             type : 'hidden',
             required : true,
+        },
+        icon : {
+            type : 'text',
+            max : 32,
+            autocomplete : iconsOptions,
         },
         label : {
             type : 'text',
