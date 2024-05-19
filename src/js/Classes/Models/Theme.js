@@ -484,12 +484,12 @@ export class Theme extends Model {
         // Import/export
         modal.as[ 'header.controls.custom' ] = [
             '<button class="ui-button ui-button--icon ui-button--hide-label-m"' +
-                ' data-action="theme.apply" data-modal="ctrl:close" type="button">' +
+                ' data-action="theme.apply" data-modal="ctrl:close" data-focus="no-auto" type="button">' +
                 '<span class="ui-icon" data-icon="action-import"><span></span></span>' +
                 '<span class="ui-button__label">Import</span>' +
             '</button>',
             '<button class="ui-button ui-button--icon ui-button--hide-label-m"' +
-                ' data-action="theme.copy" type="button">' +
+                ' data-action="theme.copy" data-focus="no-auto" type="button">' +
                 '<span class="ui-icon" data-icon="action-export"><span></span></span>' +
                 '<span class="ui-button__label">Export</span>' +
             '</button>',
