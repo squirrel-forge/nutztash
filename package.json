@@ -1,6 +1,6 @@
 {
   "name": "@squirrel-forge/nutztash",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "nutZtash - The private todo and notes tool",
   "scripts": {
     "build:html": "cp -rf index.html docs/index.html && cp -rf nutztash.svg docs/nutztash.svg && cp -rf manifest.json docs/manifest.json",
