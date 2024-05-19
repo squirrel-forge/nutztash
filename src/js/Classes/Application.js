@@ -768,6 +768,16 @@ export class Application extends EventDispatcher {
             create : () => { return Constructor.form( parent ? { rel : parent.id } : null ); },
             edit : () => { return Constructor.form( model.data ); },
         };
+        const simpleFormsToggle = '<button class="ui-button ui-button--icon ui-tooltip"' +
+            ' data-tip="bl" data-action="simple.on" data-focus="no-auto" type="button">' +
+                '<span class="ui-icon ui-icon--rotate-270" data-icon="arrow-simple"><span></span></span>' +
+                '<span class="ui-button__label ui-tooltip__tip">Simple mode</span>' +
+            '</button>' +
+            '<button class="ui-button ui-button--icon ui-tooltip"' +
+                ' data-tip="bl" data-action="simple.off" data-focus="no-auto" type="button">' +
+                '<span class="ui-icon" data-icon="settings"><span></span></span>' +
+                '<span class="ui-button__label ui-tooltip__tip">More options</span>' +
+            '</button>';
         const render = {
             template : 'modal',
             data : {
@@ -775,7 +785,7 @@ export class Application extends EventDispatcher {
                 classes : [ `ui-modal--${type}` ],
                 mode : modes[ mode ],
                 focusable : false,
-                header : { custom : titles[ mode ] + title_in + '</h3>', controls : null },
+                header : { custom : titles[ mode ] + title_in + '</h3>', controls : { custom : simpleFormsToggle } },
                 icons : { confirm : 'save' },
                 i18n : { confirm : 'Save' },
             },
@@ -795,12 +805,27 @@ export class Application extends EventDispatcher {
         } );
         dom.addEventListener( 'modal.initialized', ( event ) => {
             const modal = event.detail.target;
+            this.bindActions( {
+                'simple.on' : [
+                    [ 'click', ( ev ) => {
+                        ev.preventDefault();
+                        document.documentElement.setAttribute( 'data-interface-simple', 'true' );
+                    } ]
+                ],
+                'simple.off' : [
+                    [ 'click', ( ev ) => {
+                        ev.preventDefault();
+                        document.documentElement.setAttribute( 'data-interface-simple', 'false' );
+                    } ]
+                ],
+            }, dom, {} );
             Constructor.bindForm( dom, modal );
             Constructor.bind( dom, { type, model, mode, parent, modal } );
             event.detail.target.open = true;
         } );
         dom.addEventListener( 'modal.hidden', ( event ) => {
             const data = Constructor.getFormData( dom );
+            document.documentElement.setAttribute( 'data-interface-simple', this.settings.simpleForms ? 'true' : 'false' );
             event.detail.target.dom.remove();
             if ( event.detail.target.confirmed ) {
                 if ( mode === 'create' && !model ) {

@@ -24,6 +24,11 @@ function _bind_settings_dom( params ) {
         document.documentElement.setAttribute( 'data-interface-size', interfaceSize.value );
     } );
 
+    const simpleForms = params.dom.querySelector( '[name="simpleForms"]' );
+    simpleForms.addEventListener( 'change', () => {
+        document.documentElement.setAttribute( 'data-interface-simple', simpleForms.checked ? 'true' : 'false' );
+    } );
+
     const showOrderControls = params.dom.querySelector( '[name="showOrderControls"]' );
     showOrderControls.addEventListener( 'change', () => {
         params.model.constructor.app.view.dom
@@ -90,6 +95,11 @@ export class Settings extends Model {
             value : window.innerWidth < 768 ? 'mobile' : 'default',
             options : [ 'tiny', 'small', 'default', 'mobile', 'medium', 'large' ],
         },
+        simpleForms : {
+            label : { text : 'Hide extended options' },
+            type : 'checkbox',
+            value : true,
+        },
         showOrderControls : {
             label : { text : 'Always show controls to change the order' },
             type : 'checkbox',
@@ -132,7 +142,7 @@ export class Settings extends Model {
             value : window.innerWidth < 992 ? 1 : 4,
         },
         defaultVariant : {
-            label : { text : 'Default variant when creating a new item' },
+            label : { text : 'Default type when creating a new item' },
             type : 'select',
             value : 'label',
             options : [ 'label', 'note', 'url', 'youtube' ],
@@ -187,6 +197,9 @@ export class Settings extends Model {
      */
     static modalRender( modal ) {
 
+        // Hide simple mode toggle buttons
+        modal.as[ 'header.controls' ] = '';
+
         // Reset button
         modal.as[ 'footer.controls.before' ] = '<button class="ui-button ui-button--icon ui-button--hide-label-m"' +
             ' data-action="settings.reset" data-modal="ctrl:close" type="button">' +
@@ -202,6 +215,8 @@ export class Settings extends Model {
     applySettings() {
 
         document.documentElement.setAttribute( 'data-interface-size', this.interfaceSize );
+
+        document.documentElement.setAttribute( 'data-interface-simple', this.simpleForms ? 'true' : 'false' );
 
         this.constructor.app.view.dom
             .classList[ this.showOrderControls ? 'add' : 'remove' ]( 'view--show-order-controls' );
