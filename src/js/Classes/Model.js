@@ -462,6 +462,14 @@ export class Model extends EventDispatcher {
     get children() { return this.dom.querySelector( this.constructor.childrenHost ); }
 
     /**
+     * Getter: iconType
+     * @return {string} - Icon type
+     */
+    get iconType() {
+        return isEmpty( this.icon ) ? 'menu' : 'font';
+    }
+
+    /**
      * Has changes
      * @public
      * @return {boolean} - Changes state
