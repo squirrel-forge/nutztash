@@ -17,6 +17,7 @@ class ItemTemplateException extends Exception {}
  * @property {string} id - Object unique dom id
  * @property {string} rel - Object parent id
  * @property {string} label - Object display label
+ * @property {null|string} icon - Object display icon
  * @property {boolean} marked - Object marked status
  * @property {string} variant - Object variant
  * @property {number} amount - Object count
@@ -41,6 +42,7 @@ export class ItemTemplate extends UiTemplate {
         id : null,
         rel : null,
         label : null,
+        icon : null,
         marked : false,
         variant : null,
         amount : 0,
@@ -87,7 +89,10 @@ export class ItemTemplate extends UiTemplate {
                 '<div data-nav="options">' +
                     '<div data-nav="nav">' +
                         '<button class="ui-button ui-button--icon ui-tooltip" data-tip="r" data-nav="show" type="button">' +
-                            '<span class="ui-icon" data-icon="menu"><span></span></span>' +
+                            '<span class="ui-icon" data-model-update="attr:iconType:data-icon"' +
+                                ` data-icon="${data.icon && data.icon.length ? 'font' : 'menu'}">` +
+                                `<span data-model-update="text:icon">${data.icon ?? ''}</span>` +
+                            '</span>' +
                             '<span class="ui-button__label ui-tooltip__tip">Show options</span>' +
                         '</button>' +
                         '<div data-nav="drop" tabindex="0">' +
