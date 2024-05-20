@@ -22,6 +22,7 @@ const ranges = [
 
     // Miscellaneous Symbols and Pictographs [ '1f300', '1f5ff' ]
     // @url https://symbl.cc/en/unicode/blocks/miscellaneous-symbols-and-pictographs/
+    // @url https://www.compart.com/en/unicode/block
     [ '1f300', '1f321' ],
     [ '1f324', '1f393' ],
     [ '1f3a0', '1f3f0' ],
@@ -45,6 +46,23 @@ const ranges = [
     [ '1f5e8' ],
     [ '1f5f3' ],
     [ '1f5fa', '1f5ff' ],
+    [ '1f600', '1f64f' ],
+    [ '1f680', '1f6c5' ],
+    [ '1f6cb', '1f6d2' ],
+    [ '1f6d5', '1f6d7' ],
+    [ '1f6dc', '1f6ec' ],
+    [ '1f6ef', '1f6e5' ],
+    [ '1f6e9' ],
+    [ '1f6f0' ],
+    [ '1f6f3', '1f6fc' ],
+    [ '1f90c', '1f93a' ],
+    [ '1f93c', '1f945' ],
+    [ '1f947', '1f9ff' ],
+    [ '1fa70', '1fa7c' ],
+    [ '1fa80', '1fa88' ],
+    [ '1fa90', '1fabd' ],
+    [ '1fabf', '1fac5' ],
+    [ '1face', '1fad6' ],
 ];
 
 /**
